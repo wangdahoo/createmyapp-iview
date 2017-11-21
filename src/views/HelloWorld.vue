@@ -1,5 +1,7 @@
 <template>
   <div class="hello">
+    <img src="../assets/logo.png">
+
     <h1>{{ msg }}</h1>
 
     <Button type="primary" shape="circle" icon="paper-airplane" @click="onClick">into the sky</Button>
