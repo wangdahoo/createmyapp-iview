@@ -3,8 +3,8 @@
     <Row type="flex" style="height: 100%;">
       <!-- menu -->
       <div class="layout-menu" :class="{'expanded': menuExpanded}">
-        <Menu theme="dark" mode="vertical" width="auto" active-name="1">
-          <div class="layout-logo-left"></div>
+        <Menu theme="dark" mode="vertical" width="auto" active-name="1" class="sidemenu">
+          <div class="layout-logo"></div>
           <MenuItem name="1">
             <Icon type="android-apps" :size="iconSize"></Icon>
             <span class="option-text">Option 1</span>
@@ -30,7 +30,7 @@
           <!-- user dropdown -->
           <Dropdown ref="userDropdown" trigger="click" placement="bottom-end" class="user-dropdown">
             <a href="javascript:void(0)">
-              <Avatar shape="square" src="https://avatars3.githubusercontent.com/u/8207553" style="margin-right: 5px;"/>
+              <Avatar shape="square" :src="avatar" style="margin-right: 5px;"/>
               <Icon type="arrow-down-b"></Icon>
             </a>
             <DropdownMenu slot="list">
@@ -43,17 +43,12 @@
         </Dropdown>
         </div>
 
-        <div class="layout-breadcrumb">
-          <Breadcrumb>
-            <BreadcrumbItem href="#">Index</BreadcrumbItem>
-            <BreadcrumbItem href="#">Apps</BreadcrumbItem>
-            <BreadcrumbItem>App</BreadcrumbItem>
-          </Breadcrumb>
-        </div>
-
         <div class="layout-content">
           <div class="layout-content-main">
-            Page Content Goes Here
+            <p>
+              Hi, {{ username }}
+              <Button type="text" @click="$router.push('/detail')">more</Button>
+            </p>
           </div>
         </div>
 
@@ -65,6 +60,8 @@
   </div>
 </template>
 <script>
+import {mapState, mapActions} from 'vuex'
+
 export default {
   name: 'Dashboard',
 
@@ -77,6 +74,11 @@ export default {
   },
 
   computed: {
+    ...mapState('user', [
+      'username',
+      'avatar'
+    ]),
+
     iconSize () {
       return this.menuExpanded ? 14 : 20
     }
@@ -85,9 +87,14 @@ export default {
   mounted () {
     // handle userDropdown events
     this.$refs.userDropdown.$on('on-click', this._handleUserDropdownEvents)
+    this.getDashboardData()
   },
 
   methods: {
+    ...mapActions('user', [
+      'getDashboardData'
+    ]),
+
     toggleClick () {
       this.menuExpanded = !this.menuExpanded
     },
@@ -128,7 +135,7 @@ export default {
     }
   }
 
-  .layout-logo-left {
+  .layout-logo {
     width: 30px;
     height: 60px;
     padding: 15px;
@@ -151,6 +158,7 @@ export default {
   .layout-main {
     flex: 1;
     background: #f5f7f9;
+    padding-bottom: 80px;
   }
 
   .layout-header {
@@ -170,20 +178,17 @@ export default {
     }
   }
 
-  .layout-breadcrumb {
-    padding: 10px 15px 0;
-  }
-
   .layout-content {
-    min-height: 500px;
+    height: 100%;
     margin: 15px;
-    overflow: hidden;
-    background: #fff;
-    border-radius: 4px;
-  }
+    overflow: auto;
 
-  .layout-content-main {
-    padding: 10px;
+    .layout-content-main {
+      padding: 10px;
+      min-height: 500px;
+      background: #fff;
+      border-radius: 4px;
+    }
   }
 
   .layout-copy {

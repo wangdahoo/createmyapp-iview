@@ -6,7 +6,7 @@ import bootstrap from '../src/bootstrap'
 const client = createClient(scriptURL)
 
 client.ready.then(async () => {
-  const response = await fetch('/greet')
+  const response = await fetch('/api/greet')
   console.log(await response.text())
 
   bootstrap()

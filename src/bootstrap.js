@@ -1,3 +1,5 @@
+import 'normalize.css/normalize.css'
+
 import './polyfill'
 import './mixins'
 
@@ -5,6 +7,9 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import store from './store'
+
+// setup services
+import './services'
 
 // iView
 import iView from 'iview'

@@ -1,10 +1,7 @@
 <template>
   <div class="layout">
     <Menu mode="horizontal" theme="dark" active-name="1">
-      <div class="layout-logo"></div>
-      <div class="layout-nav">
-        <BackButton btnText="返回" :onClick="back" />
-      </div>
+      <BackButton btnText="返回" :onClick="back" />
     </Menu>
 
     <div class="layout-content">
@@ -36,8 +33,8 @@
           <Row>
             <Col span="8" offset="8">
               <div class="form-buttons">
-                <Button type="primary" @click="login(form)">登 录</Button>
-                <Button type="default" @click="resetForm">重 置</Button>
+                <Button type="primary" @click="submit(form)">登 录</Button>
+                <Button type="default" @click="reset">重 置</Button>
               </div>
             </Col>
           </Row>
@@ -52,6 +49,7 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex'
 import BackButton from '@/components/BackButton'
 
 export default {
@@ -71,19 +69,24 @@ export default {
   },
 
   methods: {
+    ...mapActions('user', [
+      'login'
+    ]),
+
     back () {
       this.$router.back()
     },
 
-    resetForm () {
+    reset () {
       this.form.username = ''
       this.form.password = ''
     },
 
-    login ({ username, password }) {
-      console.log(username, password)
-
-      this.$router.push('/dashboard')
+    submit ({username, password}) {
+      this.login({
+        username,
+        password
+      }).then(() => this.$router.push('/dashboard'))
     }
   }
 }
