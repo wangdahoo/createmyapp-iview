@@ -2,6 +2,10 @@
 # yarn lockfile v1
 
 
+"@publica/url-polyfill@^0.5.8":
+  version "0.5.8"
+  resolved "http://registry.npm.taobao.org/@publica/url-polyfill/download/@publica/url-polyfill-0.5.8.tgz#110d0c2ff23c2c8bf84bdcb25c52494ef36c6c4c"
+
 abbrev@1:
   version "1.1.1"
   resolved "http://registry.npm.taobao.org/abbrev/download/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"
@@ -793,7 +797,7 @@ babel-register@^6.22.0, babel-register@^6.26.0:
     mkdirp "^0.5.1"
     source-map-support "^0.4.15"
 
-babel-runtime@6.x, babel-runtime@^6.18.0, babel-runtime@^6.22.0, babel-runtime@^6.26.0:
+babel-runtime@6.x, babel-runtime@^6.18.0, babel-runtime@^6.22.0, babel-runtime@^6.23.0, babel-runtime@^6.26.0:
   version "6.26.0"
   resolved "http://registry.npm.taobao.org/babel-runtime/download/babel-runtime-6.26.0.tgz#965c7058668e82b55d7bfe04ff2337bc8b5647fe"
   dependencies:
@@ -3348,7 +3352,7 @@ loader-utils@^0.2.15, loader-utils@^0.2.16:
     json5 "^0.5.0"
     object-assign "^4.0.1"
 
-loader-utils@^1.0.1, loader-utils@^1.0.2, loader-utils@^1.1.0:
+loader-utils@^1.0.1, loader-utils@^1.0.2, loader-utils@^1.0.3, loader-utils@^1.1.0:
   version "1.1.0"
   resolved "http://registry.npm.taobao.org/loader-utils/download/loader-utils-1.1.0.tgz#c98aef488bcceda2ffb5e2de646d6a754429f5cd"
   dependencies:
@@ -3530,6 +3534,10 @@ miller-rabin@^4.0.0:
   dependencies:
     bn.js "^4.0.0"
     brorand "^1.0.1"
+
+mime-component@0.0.1:
+  version "0.0.1"
+  resolved "http://registry.npm.taobao.org/mime-component/download/mime-component-0.0.1.tgz#9419aef563b3ec2b6c9d7938e8ea5df93bd00719"
 
 "mime-db@>= 1.30.0 < 2":
   version "1.31.0"
@@ -4030,6 +4038,12 @@ path-to-regexp@0.1.7:
   version "0.1.7"
   resolved "http://registry.npm.taobao.org/path-to-regexp/download/path-to-regexp-0.1.7.tgz#df604178005f522f15eb4490e7247a1bfaa67f8c"
 
+path-to-regexp@^1.7.0:
+  version "1.7.0"
+  resolved "http://registry.npm.taobao.org/path-to-regexp/download/path-to-regexp-1.7.0.tgz#59fde0f435badacba103a84e9d3bc64e96b9937d"
+  dependencies:
+    isarray "0.0.1"
+
 path-type@^1.0.0:
   version "1.1.0"
   resolved "http://registry.npm.taobao.org/path-type/download/path-type-1.1.0.tgz#59c44f7ee491da704da415da5a4070ba4f8fe441"
@@ -4434,6 +4448,10 @@ progress@^1.1.8:
   version "1.1.8"
   resolved "http://registry.npm.taobao.org/progress/download/progress-1.1.8.tgz#e260c78f6161cdd9b0e56cc3e0a85de17c7a57be"
 
+promise-polyfill@^6.0.2:
+  version "6.0.2"
+  resolved "http://registry.npm.taobao.org/promise-polyfill/download/promise-polyfill-6.0.2.tgz#d9c86d3dc4dc2df9016e88946defd69b49b41162"
+
 proxy-addr@~2.0.2:
   version "2.0.2"
   resolved "http://registry.npm.taobao.org/proxy-addr/download/proxy-addr-2.0.2.tgz#6571504f47bb988ec8180253f85dd7e14952bdec"
@@ -4471,7 +4489,7 @@ q@^1.1.2:
   version "1.5.1"
   resolved "http://registry.npm.taobao.org/q/download/q-1.5.1.tgz#7e32f75b41381291d04611f1bf14109ac00651d7"
 
-qs@6.5.1, qs@^6.5.1, qs@~6.5.1:
+qs@6.5.1, qs@^6.4.0, qs@^6.5.1, qs@~6.5.1:
   version "6.5.1"
   resolved "http://registry.npm.taobao.org/qs/download/qs-6.5.1.tgz#349cdf6eef89ec45c12d7d5eb3fc0c870343a6d8"
 
@@ -4991,6 +5009,24 @@ serve-static@1.13.1:
     parseurl "~1.3.2"
     send "0.16.1"
 
+service-mocker-polyfills@^1.1.3:
+  version "1.1.3"
+  resolved "http://registry.npm.taobao.org/service-mocker-polyfills/download/service-mocker-polyfills-1.1.3.tgz#cc3931897e1eda8d308bc88a142c99e7a09b2a79"
+  dependencies:
+    "@publica/url-polyfill" "^0.5.8"
+    promise-polyfill "^6.0.2"
+    whatwg-fetch "^2.0.1"
+
+service-mocker@^2.1.2:
+  version "2.1.2"
+  resolved "http://registry.npm.taobao.org/service-mocker/download/service-mocker-2.1.2.tgz#6298bd76b7a439694324c67197aeae9b440d8939"
+  dependencies:
+    babel-runtime "^6.23.0"
+    mime-component "0.0.1"
+    path-to-regexp "^1.7.0"
+    qs "^6.4.0"
+    statuses "^1.3.1"
+
 set-blocking@^2.0.0, set-blocking@~2.0.0:
   version "2.0.0"
   resolved "http://registry.npm.taobao.org/set-blocking/download/set-blocking-2.0.0.tgz#045f9782d011ae9a6803ddd382b24392b3d890f7"
@@ -5180,7 +5216,7 @@ stackframe@^1.0.3:
   version "1.0.4"
   resolved "http://registry.npm.taobao.org/stackframe/download/stackframe-1.0.4.tgz#357b24a992f9427cba6b545d96a14ed2cbca187b"
 
-"statuses@>= 1.3.1 < 2":
+"statuses@>= 1.3.1 < 2", statuses@^1.3.1:
   version "1.4.0"
   resolved "http://registry.npm.taobao.org/statuses/download/statuses-1.4.0.tgz#bb73d446da2796106efcc1b601a253d6c46bd087"
 
@@ -5313,6 +5349,12 @@ svgo@^0.7.0:
     mkdirp "~0.5.1"
     sax "~1.2.1"
     whet.extend "~0.9.9"
+
+sw-loader@^0.1.2:
+  version "0.1.2"
+  resolved "http://registry.npm.taobao.org/sw-loader/download/sw-loader-0.1.2.tgz#2fb109f34eb8a26dde123c4ef3dc21baa8549ada"
+  dependencies:
+    loader-utils "^1.0.3"
 
 table@^3.7.8:
   version "3.8.3"
@@ -5781,7 +5823,7 @@ websocket-extensions@>=0.1.1:
   version "0.1.3"
   resolved "http://registry.npm.taobao.org/websocket-extensions/download/websocket-extensions-0.1.3.tgz#5d2ff22977003ec687a4b87073dfbbac146ccf29"
 
-whatwg-fetch@^2.0.3:
+whatwg-fetch@^2.0.1, whatwg-fetch@^2.0.3:
   version "2.0.3"
   resolved "http://registry.npm.taobao.org/whatwg-fetch/download/whatwg-fetch-2.0.3.tgz#9c84ec2dcf68187ff00bc64e1274b442176e1c84"
 
