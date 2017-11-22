@@ -1,5 +1,5 @@
 <template>
-  <div class="layout laylout-dashboard" :class="{'layout-hide-text': !menuExpanded}">
+  <div class="layout laylout-dashboard">
     <Row type="flex" style="height: 100%;">
       <!-- menu -->
       <div class="layout-menu" :class="{'expanded': menuExpanded}">
@@ -7,15 +7,15 @@
           <div class="layout-logo-left"></div>
           <MenuItem name="1">
             <Icon type="android-apps" :size="iconSize"></Icon>
-            <span class="layout-text">Option 1</span>
+            <span class="option-text">Option 1</span>
           </MenuItem>
           <MenuItem name="2">
             <Icon type="document-text" :size="iconSize"></Icon>
-            <span class="layout-text">Option 2</span>
+            <span class="option-text">Option 2</span>
           </MenuItem>
           <MenuItem name="3">
             <Icon type="stats-bars" :size="iconSize"></Icon>
-            <span class="layout-text">Option 3</span>
+            <span class="option-text">Option 3</span>
           </MenuItem>
         </Menu>
       </div>
@@ -23,9 +23,24 @@
       <!-- main -->
       <div class="layout-main">
         <div class="layout-header">
-          <Button type="text" @click="toggleClick">
+          <Button type="text" @click="toggleClick" class="btn-toggle">
             <Icon type="navicon" size="32"></Icon>
           </Button>
+
+          <!-- user dropdown -->
+          <Dropdown ref="userDropdown" trigger="click" placement="bottom-end" class="user-dropdown">
+            <a href="javascript:void(0)">
+              <Avatar shape="square" src="https://avatars3.githubusercontent.com/u/8207553" style="margin-right: 5px;"/>
+              <Icon type="arrow-down-b"></Icon>
+            </a>
+            <DropdownMenu slot="list">
+              <DropdownItem>菜单 - 1</DropdownItem>
+              <DropdownItem>菜单 - 2</DropdownItem>
+              <DropdownItem disabled>菜单 - 3</DropdownItem>
+              <DropdownItem>菜单 - 4</DropdownItem>
+              <DropdownItem divided name="logout">退出</DropdownItem>
+            </DropdownMenu>
+        </Dropdown>
         </div>
 
         <div class="layout-breadcrumb">
@@ -37,7 +52,9 @@
         </div>
 
         <div class="layout-content">
-          <div class="layout-content-main">Content</div>
+          <div class="layout-content-main">
+            Page Content Goes Here
+          </div>
         </div>
 
         <div class="layout-copy">
@@ -61,13 +78,23 @@ export default {
 
   computed: {
     iconSize () {
-      return this.menuExpanded ? 14 : 24
+      return this.menuExpanded ? 14 : 20
     }
+  },
+
+  mounted () {
+    // handle userDropdown events
+    this.$refs.userDropdown.$on('on-click', this._handleUserDropdownEvents)
   },
 
   methods: {
     toggleClick () {
       this.menuExpanded = !this.menuExpanded
+    },
+
+    _handleUserDropdownEvents (dropdownItemName) {
+      // logout
+      if (dropdownItemName === 'logout') this.$router.replace('/login')
     }
   }
 }
@@ -84,8 +111,12 @@ export default {
     width: 80px;
     transition: width .2s ease-in-out;
 
-    .ivu-icon {
-      margin-left: 7px;
+    .ivu-menu-item {
+      height: 49px;
+
+      .ivu-icon {
+        margin-left: 7px;
+      }
     }
 
     &.expanded {
@@ -97,25 +128,46 @@ export default {
     }
   }
 
-  .layout-main {
-    flex: 1;
-  }
-
   .layout-logo-left {
     width: 30px;
-    height: 45px;
-    margin: 0 auto 15px auto;
+    height: 60px;
+    padding: 15px;
+    margin: 0 auto;
 
-    @include background-image(url('../assets/logo.png'), 100%, left)
+    @include background-image(url('../assets/logo.png'), 100%, left);
   }
 
-  .layout-text {
+  .option-text {
     position: absolute;
     left: 40px;
+    opacity: 0;
   }
 
-  .layout-hide-text .layout-text {
-    display: none;
+  .layout-menu.expanded .option-text {
+    opacity: 1;
+    transition: opacity .1s ease-in-out .1s;
+  }
+
+  .layout-main {
+    flex: 1;
+    background: #f5f7f9;
+  }
+
+  .layout-header {
+    height: 60px;
+    background: #fff;
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.1);
+
+    .btn-toggle {
+      position: relative;
+      top: 6px;
+    }
+
+    .user-dropdown {
+      float: right;
+      margin-top: 14px;
+      margin-right: 15px;
+    }
   }
 
   .layout-breadcrumb {
@@ -123,7 +175,7 @@ export default {
   }
 
   .layout-content {
-    min-height: 100px;
+    min-height: 500px;
     margin: 15px;
     overflow: hidden;
     background: #fff;
@@ -140,16 +192,10 @@ export default {
     width: 100%;
     padding: 15px 10px;
     color: #9ea7b4;
+    height: 50px;
     background: #f5f7f9;
-  }
-
-  .layout-header {
-    height: 60px;
-    background: #fff;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-  }
-
-  .layout-ceiling-main a {
-    color: #9ba7b5;
+    box-shadow: 0 -2px 10px 0 rgba(0, 0, 0, 0.1);
+    font-size: 14px;
+    line-height: 20px;
   }
 </style>
