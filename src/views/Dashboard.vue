@@ -109,10 +109,6 @@ export default {
 <style lang="scss" scoped>
   @import "../scss/mixins";
 
-  .layout.layout-dashboard {
-
-  }
-
   .layout-menu {
     background: #363e4f;
     width: 80px;

@@ -41,10 +41,6 @@ export default {
     .layout-content {
       min-height: 400px;
       margin: 15px;
-
-      .layout-content-main {
-
-      }
     }
   }
 </style>
