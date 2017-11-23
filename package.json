@@ -8,8 +8,20 @@
     "start": "npm run dev",
     "lint": "eslint --ext .js,.vue src",
     "lint:css": "stylelint 'src/**/*.scss' 'src/**/*.vue'",
+    "lint-staged": "lint-staged",
     "build": "node build/build.js"
   },
+  "lint-staged": {
+    "src/**/*.{vue,js}": [
+      "eslint",
+      "git add"
+    ],
+    "src/**/*.{vue,scss}": [
+      "stylelint",
+      "git add"
+    ]
+  },
+  "pre-commit": "lint-staged",
   "dependencies": {
     "es6-promise": "^4.1.1",
     "iview": "^2.7.3",
@@ -57,6 +69,7 @@
     "portfinder": "^1.0.13",
     "postcss-import": "^11.0.0",
     "postcss-loader": "^2.0.8",
+    "pre-commit": "^1.2.2",
     "rimraf": "^2.6.0",
     "sass-loader": "^6.0.6",
     "semver": "^5.3.0",
